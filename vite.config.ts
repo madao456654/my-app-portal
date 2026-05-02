@@ -5,7 +5,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: './', // GitHub Pages用に相対パスを設定
+  base: '/my-app-portal/', // GitHub Pages用に相対パスを設定
   build: {
     rollupOptions: {
       input: {
