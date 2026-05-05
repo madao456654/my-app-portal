@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
         rateItems.forEach((item, index) => {
             // Force start year based on previous end year
             item.startYear = currentYear;
+            if (item.endYear < item.startYear) {
+                item.endYear = item.startYear;
+            }
             
             // For the last item, we display "～" instead of the input if desired,
             // but let's just make it editable.
@@ -107,6 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Attach listener for adding new rate row
+    addRateBtn.addEventListener('click', () => {
+        let nextStart = 1;
+        if (rateItems.length > 0) {
+            nextStart = rateItems[rateItems.length - 1].endYear + 1;
+        }
+        addRateRow(nextStart, nextStart + 4, 1.0); // default to a 5-year period with 1.0%
+    });
 
     // Format currency
     function formatCurrency(amount) {
